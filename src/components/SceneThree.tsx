@@ -1,42 +1,82 @@
-import PageTransition, { Stagger } from './PageTransition';
+import { motion } from 'framer-motion';
+import PageTransition from './PageTransition';
 import Button from './Button';
+import content from '../data/content';
 
 interface SceneThreeProps {
   onComplete: () => void;
 }
 
+function Highlight({ children }: { children: React.ReactNode }) {
+  return <span className="text-soft-accent font-medium">{children}</span>;
+}
+
 export default function SceneThree({ onComplete }: SceneThreeProps) {
   return (
     <PageTransition
-      background="radial-gradient(ellipse at 50% 40%, rgba(139, 58, 69, 0.10), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(217, 184, 188, 0.08), transparent 50%), #F5F2ED"
+      background="radial-gradient(ellipse at 50% 30%, rgba(139, 58, 69, 0.18), transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(217, 184, 188, 0.08), transparent 50%), #171717"
+      align="start"
     >
-      <div className="max-w-[640px] w-full text-center flex flex-col items-center">
-        <Stagger delay={0.3} className="mb-10">
-          <p className="text-[11px] tracking-[0.35em] uppercase text-muted/60 font-light">
-            one last thing
+      <div className="max-w-[600px] w-full mx-auto">
+        {/* Message 8 — "I want you back" */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.9,
+            delay: 0.3,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mb-16 md:mb-20"
+        >
+          <p className="text-2xl md:text-3xl lg:text-4xl text-warm-white/90 leading-[1.5] font-light tracking-tight">
+            <Highlight>I want you back</Highlight> da cycle odrawa bska os
           </p>
-        </Stagger>
+        </motion.div>
 
-        <Stagger delay={0.5} className="mb-14">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-primary leading-[1.15] tracking-tight">
-            Will you <span className="italic font-serif text-accent">listen?</span>
-          </h1>
-        </Stagger>
+        {/* Thin divider */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="w-24 h-px bg-gradient-to-r from-transparent via-soft-accent/30 to-transparent mx-auto mb-16 md:mb-20 origin-left"
+        />
 
-        <Stagger delay={0.8} className="mb-10">
-          <p className="text-base md:text-lg text-muted font-light leading-relaxed max-w-[400px]">
-            Just hear me out.
-            <br />
-            That's all I ask.
+        {/* Message 9 — FINAL MESSAGE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.9,
+            delay: 1.0,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mb-16"
+        >
+          <p className="text-lg md:text-xl text-warm-white leading-[1.8] font-light">
+            Os na ps om drta wem che im choosing honesty <Highlight>i need you i fckn love you</Highlight> ds dmra time drta hrsa pata da khola hrsa strgy ma patawa os
           </p>
-        </Stagger>
+        </motion.div>
 
-        {/* Only Yes button */}
-        <Stagger delay={1.1}>
-          <Button variant="primary" onClick={onComplete} className="min-w-[200px]">
-            Yes
+        {/* Continue to final */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
+          className="mt-16 mb-12 text-center"
+        >
+          <Button
+            variant="secondary"
+            arrow
+            onClick={onComplete}
+            className="!border-border-dark/40 !text-warm-white/70 hover:!border-warm-white/30 hover:!text-warm-white"
+          >
+            Continue
           </Button>
-        </Stagger>
+        </motion.div>
+
+        {/* Spacer */}
+        <div className="h-10" />
       </div>
     </PageTransition>
   );

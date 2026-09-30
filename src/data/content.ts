@@ -2,8 +2,7 @@
  * Content Configuration
  * 
  * Kabir's exact words — preserved character-for-character.
- * Do NOT edit the text inside the sections array.
- * Only interface labels (buttons, eyebrows) can be adjusted above.
+ * Do NOT edit the text inside the message arrays.
  */
 
 const content = {
@@ -11,16 +10,14 @@ const content = {
   girlfriendName: "Khola",
   senderName: "Kabir",
 
-  // Interface text (not Kabir's words — safe to adjust)
-  openingEyebrow: "for Khola.",
-  openingIntro: "I have one thing to ask you.",
-  openingQuestion: "i wanna start over again",
+  // Page 1 state messages (exact text from Kabir)
+  noMessages: [
+    "za mari waps sha, no option paki nishta",
+    "ta pa khabara na poegi click yes and listen to me",
+  ],
 
-  firstNoMessage: "za mari waps sha, no option paki nishta",
-  secondNoMessage: "ta pa khabara na poegi click yes and listen to me",
-
-  // Kabir's complete message — 9 sections, EXACT text preserved
-  sections: [
+  // Page 2: Kabir's complete message — 9 sections, EXACT text preserved
+  messages: [
     `ik tme om hurt kre nd ik you cant get over it quickly i jus hope you dont judge everything i feel fir you by the worst thing i did while i ws hurt mam dka ghlti okra depere kho da na che ta ba loose kom`,
 
     `im not going to make excuses for what i did kho zm hurt wm
