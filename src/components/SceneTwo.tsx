@@ -1,42 +1,128 @@
-import PageTransition, { Stagger } from './PageTransition';
+import { motion } from 'framer-motion';
+import PageTransition from './PageTransition';
 import Button from './Button';
-import NoButton from './NoButton';
 import content from '../data/content';
 
 interface SceneTwoProps {
   onComplete: () => void;
 }
 
+function MessageSection({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.8,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="mb-12 md:mb-16"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Highlight({ children }: { children: React.ReactNode }) {
+  return <span className="text-soft-accent font-medium">{children}</span>;
+}
+
 export default function SceneTwo({ onComplete }: SceneTwoProps) {
   return (
     <PageTransition
-      background="radial-gradient(ellipse at 50% 30%, rgba(217, 184, 188, 0.14), transparent 55%), radial-gradient(ellipse at 20% 70%, rgba(139, 58, 69, 0.05), transparent 50%), #EFEAE3"
+      background="radial-gradient(ellipse at 50% 20%, rgba(139, 58, 69, 0.14), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(139, 58, 69, 0.06), transparent 50%), #171717"
+      align="start"
     >
-      <div className="max-w-[640px] w-full text-center flex flex-col items-center">
-        {/* The second no message */}
-        <Stagger delay={0.3} className="mb-6">
-          <p className="text-[11px] tracking-[0.35em] uppercase text-muted/60 font-light">
-            listen
+      <div className="max-w-[600px] w-full mx-auto">
+        {/* Opening eyebrow */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-[11px] tracking-[0.35em] uppercase text-warm-white/30 font-light mb-16 text-center"
+        >
+          from {content.senderName}
+        </motion.p>
+
+        {/* Message 1 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            {content.messages[0]}
           </p>
-        </Stagger>
+        </MessageSection>
 
-        <Stagger delay={0.5} className="mb-14">
-          <p className="text-xl md:text-2xl lg:text-[26px] font-light text-primary leading-relaxed tracking-tight">
-            {content.secondNoMessage}
+        {/* Message 2 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            {content.messages[1]}
           </p>
-        </Stagger>
+        </MessageSection>
 
-        <Stagger delay={0.8} className="mb-10">
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto" />
-        </Stagger>
+        {/* Message 3 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            {content.messages[2]}
+          </p>
+        </MessageSection>
 
-        {/* Buttons */}
-        <Stagger delay={1.0} className="flex flex-col items-center gap-3 w-full max-w-[260px]">
-          <Button variant="primary" onClick={onComplete} className="w-full">
-            Yes
+        {/* Message 4 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            {content.messages[3]}
+          </p>
+        </MessageSection>
+
+        {/* Message 5 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            hrsa na ps hm <Highlight>i love you</Highlight> i forgave things that broke me bcs I couldn't imagine loosing you pain k wm dena baghair me nashu deal kole khpl pain sr
+            <br />
+            name ghohtal che ta hurt km nme dena mahke dse sa kare tta kha pata da
+          </p>
+        </MessageSection>
+
+        {/* Message 6 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            kho ta zmng ds dre salor kala yad ka hrsa yad ka da snga wu za snga wm <Highlight>i still love you</Highlight> hra pera ma chance wrkre mene la depere tana ghwarm
+          </p>
+        </MessageSection>
+
+        {/* Message 7 */}
+        <MessageSection>
+          <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
+            {content.messages[6]}
+          </p>
+        </MessageSection>
+
+        {/* Continue button */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16 mb-12 text-center"
+        >
+          <Button
+            variant="secondary"
+            arrow
+            onClick={onComplete}
+            className="!border-border-dark/40 !text-warm-white/70 hover:!border-warm-white/30 hover:!text-warm-white"
+          >
+            Continue
           </Button>
-          <NoButton onClick={onComplete} />
-        </Stagger>
+        </motion.div>
+
+        {/* Spacer */}
+        <div className="h-10" />
       </div>
     </PageTransition>
   );
