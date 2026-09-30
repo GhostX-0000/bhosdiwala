@@ -8,44 +8,62 @@ export default function BackgroundMusic() {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Set initial volume
-    audio.volume = 0.15;
+    // Set volume immediately
+    audio.volume = 0.5;
 
-    // Attempt autoplay
-    const attemptAutoplay = async () => {
+    // Function to attempt playback
+    const tryPlay = async () => {
+      if (!audio || hasStartedRef.current) return;
+      
       try {
         await audio.play();
         hasStartedRef.current = true;
-        console.log('Background music started automatically');
+        console.log('Background music started');
+        // Cleanup gesture listeners once playback succeeds
+        cleanupGestureListeners();
       } catch (error) {
-        console.log('Autoplay blocked, waiting for user interaction');
-        // Will be handled by interaction listener below
+        // Browser autoplay policy blocked playback - this is expected
+        // Will wait for user gesture
       }
     };
 
-    attemptAutoplay();
+    // Attempt autoplay immediately
+    tryPlay();
 
-    // Fallback: start on first user interaction
+    // Also attempt when audio is ready
+    const handleCanPlay = () => tryPlay();
+    const handleLoadedMetadata = () => tryPlay();
+    
+    audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    // Cleanup function for gesture listeners
+    const cleanupGestureListeners = () => {
+      document.removeEventListener('pointerdown', handleFirstInteraction, true);
+      document.removeEventListener('touchstart', handleFirstInteraction, true);
+      document.removeEventListener('click', handleFirstInteraction, true);
+      document.removeEventListener('keydown', handleFirstInteraction, true);
+    };
+
+    // First-interaction fallback with capture phase
     const handleFirstInteraction = async () => {
       if (!hasStartedRef.current && audio) {
         try {
           await audio.play();
           hasStartedRef.current = true;
           console.log('Background music started on user interaction');
+          cleanupGestureListeners();
         } catch (error) {
           console.error('Failed to start background music:', error);
         }
       }
-      // Remove all listeners after first successful interaction
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
     };
 
-    // Add interaction listeners
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('touchstart', handleFirstInteraction);
-    document.addEventListener('keydown', handleFirstInteraction);
+    // Add capture-phase listeners for immediate response
+    document.addEventListener('pointerdown', handleFirstInteraction, { once: true, capture: true });
+    document.addEventListener('touchstart', handleFirstInteraction, { once: true, capture: true });
+    document.addEventListener('click', handleFirstInteraction, { once: true, capture: true });
+    document.addEventListener('keydown', handleFirstInteraction, { once: true, capture: true });
 
     // Error handling
     const handleError = () => {
@@ -54,22 +72,22 @@ export default function BackgroundMusic() {
 
     audio.addEventListener('error', handleError);
 
-    // Cleanup
+    // Cleanup on unmount
     return () => {
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
+      audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('error', handleError);
+      cleanupGestureListeners();
     };
   }, []);
 
-  // Render a hidden audio element that persists
   return (
     <audio
       ref={audioRef}
       src="/music/background.mp3"
-      loop
       preload="auto"
+      loop
+      playsInline
       style={{ display: 'none' }}
     />
   );
