@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 
 interface ApologySectionProps {
   onContinue: () => void;
@@ -6,85 +7,84 @@ interface ApologySectionProps {
 
 export default function ApologySection({ onContinue }: ApologySectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 40%, rgba(139, 58, 69, 0.18), transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(139, 58, 69, 0.08), transparent 50%), #171717"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-12 leading-tight">
-          I'm sorry.
-        </h1>
+      <div className="max-w-[640px] w-full text-center relative">
+        {/* Subtle burgundy glow behind heading */}
+        <div
+          aria-hidden
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(139, 58, 69, 0.12) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+          }}
+        />
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            Not the quick 'sorry'
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            people say to move on.
-          </p>
+        <div className="relative z-10">
+          <Stagger delay={0.4}>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-warm-white mb-16 leading-[1.05] tracking-tight">
+              I'm <span className="italic font-serif text-soft-accent">sorry.</span>
+            </h1>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I mean it.
-          </p>
+          <div className="space-y-6 mb-16">
+            <Stagger delay={0.7}>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+                Not the quick 'sorry'
+              </p>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+                people say to move on.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I know I hurt you, and I know
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I can't take that back.
-          </p>
+            <Stagger delay={0.9}>
+              <p className="text-base md:text-lg text-warm-white/90 leading-relaxed font-light pt-4">
+                I mean it.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            I could give you excuses.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I could explain what happened.
-          </p>
+            <Stagger delay={1.1}>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light pt-4">
+                I know I hurt you, and I know
+                <br />
+                I can't take that back.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            But honestly...
-          </p>
+            <Stagger delay={1.3}>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light pt-4">
+                I could give you excuses.
+                <br />
+                I could explain what happened.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-4">
-            none of that
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            changes how you felt.
-          </p>
+            <Stagger delay={1.5}>
+              <p className="text-base md:text-lg text-warm-white/70 leading-relaxed font-light pt-4">
+                But honestly...
+              </p>
+              <p className="text-base md:text-lg text-warm-white/70 leading-relaxed font-light pt-2">
+                none of that
+                <br />
+                changes how you felt.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            And I'm sorry.
-          </p>
-        </motion.div>
+            <Stagger delay={1.7}>
+              <p className="text-base md:text-lg text-warm-white/90 leading-relaxed font-light pt-6">
+                And I'm sorry.
+              </p>
+            </Stagger>
+          </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
-            Keep reading →
-          </button>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+          <Stagger delay={2.0}>
+            <Button variant="secondary" arrow onClick={onContinue} className="!border-border-dark !text-warm-white/80 hover:!border-warm-white/40 hover:!text-warm-white">
+              Keep reading
+            </Button>
+          </Stagger>
+        </div>
+      </div>
+    </PageTransition>
   );
 }

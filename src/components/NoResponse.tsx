@@ -1,59 +1,60 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
 
 export default function NoResponse() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 50%, rgba(104, 99, 94, 0.08), transparent 60%), #EFEAE3"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-          Okay.
-        </p>
-
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-          I respect your answer.
-        </p>
-
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-          I won't try to force you
-        </p>
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-          into saying yes.
-        </p>
-
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-          I just want you to know
-        </p>
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-          that I'm sorry.
-        </p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-          className="mt-10"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            And if someday
+      <div className="max-w-[640px] w-full text-center">
+        <Stagger delay={0.4}>
+          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-primary leading-tight tracking-tight mb-12">
+            Okay.
           </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
+        </Stagger>
+
+        <div className="space-y-5 mb-12">
+          <Stagger delay={0.7}>
+            <p className="text-base md:text-lg text-muted leading-relaxed font-light">
+              I respect your answer.
+            </p>
+          </Stagger>
+
+          <Stagger delay={0.9}>
+            <p className="text-base md:text-lg text-muted leading-relaxed font-light">
+              I won't try to force you
+              <br />
+              into saying yes.
+            </p>
+          </Stagger>
+
+          <Stagger delay={1.1}>
+            <p className="text-base md:text-lg text-primary leading-relaxed font-light pt-3">
+              I just want you to know
+              <br />
+              that I'm sorry.
+            </p>
+          </Stagger>
+        </div>
+
+        {/* Thin divider */}
+        <Stagger delay={1.3} className="my-10 flex justify-center">
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        </Stagger>
+
+        <Stagger delay={1.5}>
+          <p className="text-base md:text-lg text-muted leading-relaxed font-light">
+            And if someday
+            <br />
             you want to talk...
           </p>
+        </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
+        <Stagger delay={1.8}>
+          <p className="text-xl md:text-2xl text-primary font-light mt-6 tracking-tight">
             I'll be here.
           </p>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        </Stagger>
+      </div>
+    </PageTransition>
   );
 }

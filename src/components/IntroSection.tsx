@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 
 interface IntroSectionProps {
   onContinue: () => void;
@@ -6,58 +7,60 @@ interface IntroSectionProps {
 
 export default function IntroSection({ onContinue }: IntroSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 20%, rgba(217, 184, 188, 0.18), transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(139, 58, 69, 0.06), transparent 50%), #F5F2ED"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <p className="text-lg md:text-xl text-secondary mb-12 font-light">
-          for Khola.
-        </p>
+      <div className="max-w-[640px] w-full text-center flex flex-col items-center">
+        {/* Small eyebrow */}
+        <Stagger delay={0.3} className="mb-16">
+          <p className="text-[11px] tracking-[0.35em] uppercase text-muted/70 font-light">
+            for Khola.
+          </p>
+        </Stagger>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I know you're upset.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-2">
-            And I know I hurt you.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            So I made something
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            instead of just saying sorry.
-          </p>
-        </motion.div>
+        {/* Decorative thin line */}
+        <Stagger delay={0.5} className="mb-16">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
+        </Stagger>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
+        {/* Main text block */}
+        <div className="space-y-6 mb-16">
+          <Stagger delay={0.7}>
+            <p className="text-xl md:text-2xl lg:text-[28px] text-primary font-light leading-relaxed tracking-tight">
+              I know you're upset.
+            </p>
+          </Stagger>
+
+          <Stagger delay={0.9}>
+            <p className="text-xl md:text-2xl lg:text-[28px] text-primary font-light leading-relaxed tracking-tight">
+              And I know I hurt you.
+            </p>
+          </Stagger>
+
+          <Stagger delay={1.2}>
+            <div className="pt-4">
+              <p className="text-base md:text-lg text-muted font-light leading-relaxed">
+                So I made something
+              </p>
+              <p className="text-base md:text-lg text-muted font-light leading-relaxed">
+                instead of just saying sorry.
+              </p>
+            </div>
+          </Stagger>
+        </div>
+
+        {/* Continue button with scroll hint */}
+        <Stagger delay={1.5} className="flex flex-col items-center gap-6">
+          <Button variant="primary" arrow onClick={onContinue}>
             Continue
-          </button>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+          </Button>
+          <div className="scroll-indicator mt-2">
+            <svg width="14" height="20" viewBox="0 0 14 20" fill="none" aria-hidden>
+              <path d="M7 2 L7 16 M2 12 L7 17 L12 12" stroke="#68635E" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+            </svg>
+          </div>
+        </Stagger>
+      </div>
+    </PageTransition>
   );
 }

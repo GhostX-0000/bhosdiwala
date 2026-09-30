@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 
 interface NoExcusesSectionProps {
   onContinue: () => void;
@@ -6,90 +7,74 @@ interface NoExcusesSectionProps {
 
 export default function NoExcusesSection({ onContinue }: NoExcusesSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 30%, rgba(217, 184, 188, 0.12), transparent 55%), #1F1B19"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I don't expect you
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            to forget it.
-          </p>
+      <div className="max-w-[640px] w-full text-center">
+        <div className="space-y-6 mb-12">
+          <Stagger delay={0.3}>
+            <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+              I don't expect you
+              <br />
+              to forget it.
+            </p>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I don't expect everything
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            to suddenly be okay.
-          </p>
+          <Stagger delay={0.5}>
+            <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+              I don't expect everything
+              <br />
+              to suddenly be okay.
+            </p>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            And I definitely don't expect
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            you to forgive me just because
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I made this website.
-          </p>
+          <Stagger delay={0.7}>
+            <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+              And I definitely don't expect
+              <br />
+              you to forgive me just because
+              <br />
+              I made this website.
+            </p>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            I just want you to know that
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I genuinely regret it.
-          </p>
-        </motion.div>
+          <Stagger delay={0.9}>
+            <p className="text-base md:text-lg text-warm-white/90 leading-relaxed font-light pt-2">
+              I just want you to know that
+              <br />
+              I genuinely regret it.
+            </p>
+          </Stagger>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            You deserved better
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            from me that day.
-          </p>
+        {/* Thin animated divider */}
+        <Stagger delay={1.1} className="my-12 flex justify-center">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-soft-accent/40 to-transparent line-draw" />
+        </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            And I want to do better now.
-          </p>
-        </motion.div>
+        {/* Emphasized text */}
+        <div className="space-y-4 mb-14">
+          <Stagger delay={1.3}>
+            <p className="text-xl md:text-2xl lg:text-[26px] text-warm-white font-light leading-relaxed tracking-tight">
+              You deserved better
+              <br />
+              <span className="italic font-serif text-soft-accent">from me that day.</span>
+            </p>
+          </Stagger>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.9, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
-            There's more →
-          </button>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+          <Stagger delay={1.5}>
+            <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light pt-4">
+              And I want to do better now.
+            </p>
+          </Stagger>
+        </div>
+
+        <Stagger delay={1.7}>
+          <Button variant="secondary" arrow onClick={onContinue} className="!border-border-dark !text-warm-white/80 hover:!border-warm-white/40 hover:!text-warm-white">
+            There's more
+          </Button>
+        </Stagger>
+      </div>
+    </PageTransition>
   );
 }
