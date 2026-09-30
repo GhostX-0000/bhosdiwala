@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 interface PageTransitionProps {
   children: ReactNode;
   background?: string;
+  align?: 'center' | 'start';
 }
 
 const containerTransition: Transition = {
@@ -11,7 +12,9 @@ const containerTransition: Transition = {
   ease: [0.22, 1, 0.36, 1],
 };
 
-export default function PageTransition({ children, background }: PageTransitionProps) {
+export default function PageTransition({ children, background, align = 'center' }: PageTransitionProps) {
+  const justifyClass = align === 'start' ? 'justify-start' : 'justify-center';
+  
   return (
     <motion.div
       className="relative min-h-screen w-full"
@@ -30,7 +33,7 @@ export default function PageTransition({ children, background }: PageTransitionP
           duration: 0.8,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-20"
+        className={`relative z-10 min-h-screen flex flex-col items-center ${justifyClass} px-6 py-20`}
       >
         {children}
       </motion.div>
