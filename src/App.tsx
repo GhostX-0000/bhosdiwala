@@ -1,54 +1,21 @@
 import { useState, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import IntroSection from './components/IntroSection';
-import QuestionSection from './components/QuestionSection';
-import ApologySection from './components/ApologySection';
-import NoExcusesSection from './components/NoExcusesSection';
-import PersonalSection from './components/PersonalSection';
-import SecondQuestionSection from './components/SecondQuestionSection';
-import SecondChanceSection from './components/SecondChanceSection';
-import MemoriesSection from './components/MemoriesSection';
-import FinalLetter from './components/FinalLetter';
-import NoResponse from './components/NoResponse';
+import SceneOne from './components/SceneOne';
+import SceneTwo from './components/SceneTwo';
+import SceneThree from './components/SceneThree';
+import SceneFour from './components/SceneFour';
 import Progress from './components/Progress';
 
-type Screen =
-  | 'intro'
-  | 'question'
-  | 'apology'
-  | 'noExcuses'
-  | 'personal'
-  | 'secondQuestion'
-  | 'secondChance'
-  | 'memories'
-  | 'finalLetter'
-  | 'noResponse';
+type Screen = 'scene1' | 'scene2' | 'scene3' | 'scene4';
 
-const screenOrder: Screen[] = [
-  'intro',
-  'question',
-  'apology',
-  'noExcuses',
-  'personal',
-  'secondQuestion',
-  'secondChance',
-  'memories',
-  'finalLetter',
-];
-
-// Map screens to step numbers (for progress)
 const screenSteps: Record<Screen, number> = {
-  intro: 1,
-  question: 2,
-  apology: 3,
-  noExcuses: 4,
-  personal: 5,
-  secondQuestion: 6,
-  secondChance: 7,
-  memories: 8,
-  finalLetter: 9,
-  noResponse: 0, // hidden
+  scene1: 1,
+  scene2: 2,
+  scene3: 3,
+  scene4: 0, // hidden on final scene
 };
+
+const TOTAL_SCENES = 4;
 
 const pageTransition = {
   initial: { opacity: 0 },
@@ -58,7 +25,7 @@ const pageTransition = {
 };
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<Screen>('intro');
+  const [currentScreen, setCurrentScreen] = useState<Screen>('scene1');
 
   const navigate = useCallback((screen: Screen) => {
     setCurrentScreen(screen);
@@ -67,44 +34,21 @@ export default function App() {
 
   const renderScreen = () => {
     switch (currentScreen) {
-      case 'intro':
-        return <IntroSection onContinue={() => navigate('question')} />;
-      case 'question':
-        return (
-          <QuestionSection
-            onYes={() => navigate('apology')}
-            onNoGiveUp={() => navigate('apology')}
-          />
-        );
-      case 'apology':
-        return <ApologySection onContinue={() => navigate('noExcuses')} />;
-      case 'noExcuses':
-        return <NoExcusesSection onContinue={() => navigate('personal')} />;
-      case 'personal':
-        return <PersonalSection onContinue={() => navigate('secondQuestion')} />;
-      case 'secondQuestion':
-        return (
-          <SecondQuestionSection
-            onYes={() => navigate('secondChance')}
-            onNo={() => navigate('noResponse')}
-          />
-        );
-      case 'secondChance':
-        return <SecondChanceSection onContinue={() => navigate('memories')} />;
-      case 'memories':
-        return <MemoriesSection onContinue={() => navigate('finalLetter')} />;
-      case 'finalLetter':
-        return <FinalLetter />;
-      case 'noResponse':
-        return <NoResponse />;
+      case 'scene1':
+        return <SceneOne onComplete={() => navigate('scene2')} />;
+      case 'scene2':
+        return <SceneTwo onComplete={() => navigate('scene3')} />;
+      case 'scene3':
+        return <SceneThree onComplete={() => navigate('scene4')} />;
+      case 'scene4':
+        return <SceneFour />;
       default:
-        return <IntroSection onContinue={() => navigate('question')} />;
+        return <SceneOne onComplete={() => navigate('scene2')} />;
     }
   };
 
   const currentStep = screenSteps[currentScreen];
-  const totalSteps = screenOrder.length;
-  const showProgress = currentStep > 0 && currentScreen !== 'finalLetter';
+  const showProgress = currentStep > 0;
 
   return (
     <div className="grain vignette relative min-h-screen overflow-x-hidden">
@@ -122,7 +66,7 @@ export default function App() {
       />
 
       {/* Progress indicator */}
-      <Progress current={currentStep} total={totalSteps} visible={showProgress} />
+      <Progress current={currentStep} total={TOTAL_SCENES} visible={showProgress} />
 
       {/* Main content */}
       <AnimatePresence mode="wait">
