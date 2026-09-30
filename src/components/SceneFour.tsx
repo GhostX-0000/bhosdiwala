@@ -59,7 +59,7 @@ export default function SceneFour() {
             className="mb-20 text-center"
           >
             <p className="text-base md:text-lg text-warm-white/60 leading-[1.8] font-light italic font-serif">
-              i lost myself everytime just to feel the warmth of her love,
+              i lost myself everytime just to feel the warmth of your love,
             </p>
             <p className="text-base md:text-lg text-warm-white/60 leading-[1.8] font-light italic font-serif mt-2">
               i yearn for the love i gave, i still yearn for those eyes
