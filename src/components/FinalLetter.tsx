@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
 import content from '../data/content';
 
 export default function FinalLetter() {
@@ -7,8 +8,8 @@ export default function FinalLetter() {
   const [showFinal, setShowFinal] = useState(false);
 
   useEffect(() => {
-    const heartTimer = setTimeout(() => setShowHeart(true), 2000);
-    const finalTimer = setTimeout(() => setShowFinal(true), 4000);
+    const heartTimer = setTimeout(() => setShowHeart(true), 2500);
+    const finalTimer = setTimeout(() => setShowFinal(true), 4500);
 
     return () => {
       clearTimeout(heartTimer);
@@ -17,110 +18,123 @@ export default function FinalLetter() {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 40%, rgba(139, 58, 69, 0.12), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(217, 184, 188, 0.06), transparent 50%), #171717"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            If you're reading this,
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            then you made it this far.
-          </p>
+      <div className="max-w-[640px] w-full text-center relative">
+        {/* Subtle glow */}
+        <div
+          aria-hidden
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(139, 58, 69, 0.08) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+        />
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            I don't know what you're
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            feeling right now.
-          </p>
+        <div className="relative z-10">
+          <Stagger delay={0.4}>
+            <p className="text-[11px] tracking-[0.35em] uppercase text-warm-white/40 font-light mb-12">
+              the end
+            </p>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            Maybe you're still angry.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-2">
-            Maybe you're hurt.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-2">
-            Maybe you're smiling.
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-2">
-            Maybe all three.
-          </p>
+          <div className="space-y-5 mb-14">
+            <Stagger delay={0.6}>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light">
+                If you're reading this,
+                <br />
+                then you made it this far.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            Whatever it is...
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-2">
-            it's okay.
-          </p>
+            <Stagger delay={0.9}>
+              <p className="text-base md:text-lg text-warm-white/70 leading-relaxed font-light pt-2">
+                I don't know what you're
+                <br />
+                feeling right now.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            I just wanted you to know
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            that I'm sorry, {content.girlfriendName}.
-          </p>
+            <Stagger delay={1.1}>
+              <div className="pt-3 space-y-1">
+                <p className="text-base md:text-lg text-warm-white/60 leading-relaxed font-light">
+                  Maybe you're still angry.
+                </p>
+                <p className="text-base md:text-lg text-warm-white/60 leading-relaxed font-light">
+                  Maybe you're hurt.
+                </p>
+                <p className="text-base md:text-lg text-warm-white/60 leading-relaxed font-light">
+                  Maybe you're smiling.
+                </p>
+                <p className="text-base md:text-lg text-warm-white/60 leading-relaxed font-light">
+                  Maybe all three.
+                </p>
+              </div>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I love you, and I don't
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            want to lose you.
-          </p>
+            <Stagger delay={1.4}>
+              <p className="text-base md:text-lg text-warm-white/70 leading-relaxed font-light pt-4">
+                Whatever it is...
+                <br />
+                it's okay.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            Thank you for hearing me out.
-          </p>
-        </motion.div>
+            <Stagger delay={1.6}>
+              <p className="text-base md:text-lg text-warm-white/90 leading-relaxed font-light pt-4">
+                I just wanted you to know
+                <br />
+                that I'm sorry, {content.girlfriendName}.
+              </p>
+            </Stagger>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-          className="text-base md:text-lg text-secondary font-light italic mb-8"
-        >
-          — {content.senderName}
-        </motion.p>
+            <Stagger delay={1.8}>
+              <p className="text-lg md:text-xl text-warm-white leading-relaxed font-light pt-4">
+                I love you, and I don't
+                <br />
+                want to lose you.
+              </p>
+            </Stagger>
 
-        {/* Heart that appears after delay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showHeart ? 1 : 0 }}
-          transition={{ duration: 1.0, ease: 'easeOut' }}
-          className="mb-8"
-        >
-          <span className="text-2xl" role="img" aria-label="heart">❤️</span>
-        </motion.div>
+            <Stagger delay={2.0}>
+              <p className="text-base md:text-lg text-warm-white/80 leading-relaxed font-light pt-4">
+                Thank you for hearing me out.
+              </p>
+            </Stagger>
+          </div>
 
-        {/* Final message */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showFinal ? 1 : 0 }}
-          transition={{ duration: 1.0, ease: 'easeOut' }}
-        >
-          <p className="text-sm md:text-base text-secondary leading-relaxed font-light">
-            Whatever happens next,
-          </p>
-          <p className="text-sm md:text-base text-secondary leading-relaxed font-light mt-1">
-            I hope you're okay.
-          </p>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+          {/* Signature */}
+          <Stagger delay={2.3}>
+            <p className="text-xl md:text-2xl font-serif italic text-soft-accent/80 mb-10 tracking-wide">
+              — {content.senderName}
+            </p>
+          </Stagger>
+
+          {/* Heart that appears after delay */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={showHeart ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-10"
+          >
+            <span className="text-3xl" role="img" aria-label="heart">❤️</span>
+          </motion.div>
+
+          {/* Final message */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={showFinal ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="text-sm md:text-base text-warm-white/50 leading-relaxed font-light">
+              Whatever happens next,
+              <br />
+              I hope you're okay.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </PageTransition>
   );
 }

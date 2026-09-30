@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 import content from '../data/content';
 
 interface MemoriesSectionProps {
@@ -14,62 +15,96 @@ const imagePaths = [
 
 export default function MemoriesSection({ onContinue }: MemoriesSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 20%, rgba(217, 184, 188, 0.12), transparent 55%), #EFEAE3"
     >
-      <div className="max-w-[600px] w-full text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-          className="text-2xl md:text-3xl font-semibold text-primary mb-10"
-        >
-          Before you go...
-        </motion.h2>
+      <div className="max-w-[680px] w-full text-center">
+        <Stagger delay={0.3}>
+          <p className="text-[11px] tracking-[0.35em] uppercase text-muted/70 font-light mb-6">
+            before you go
+          </p>
+        </Stagger>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {imagePaths.map((src, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.15, ease: 'easeOut' }}
-              className="group"
-            >
-              <div className="relative overflow-hidden rounded-sm border border-border aspect-[4/3] bg-border/30">
+        <Stagger delay={0.5}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-primary mb-14 leading-[1.1] tracking-tight">
+            Some <span className="italic font-serif text-accent">memories.</span>
+          </h2>
+        </Stagger>
+
+        {/* Asymmetric gallery - mobile: stacked, desktop: asymmetric */}
+        <div className="space-y-6 md:space-y-8 mb-14">
+          {/* Large first image */}
+          <Stagger delay={0.7} className="group">
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] md:aspect-[16/10] bg-border/40">
+              <img
+                src={imagePaths[0]}
+                alt={content.photoAltText[0]}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <p className="text-sm text-muted mt-4 font-light italic">
+              {content.photoCaptions[0]}
+            </p>
+          </Stagger>
+
+          {/* Two smaller images side by side on desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <Stagger delay={0.9} className="group">
+              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] bg-border/40">
                 <img
-                  src={src}
-                  alt={content.photoAltText[index]}
+                  src={imagePaths[1]}
+                  alt={content.photoAltText[1]}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <p className="text-sm text-secondary mt-3 font-light">
-                {content.photoCaptions[index]}
+              <p className="text-sm text-muted mt-4 font-light italic">
+                {content.photoCaptions[1]}
               </p>
-            </motion.div>
-          ))}
+            </Stagger>
+
+            <Stagger delay={1.1} className="group">
+              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] bg-border/40">
+                <img
+                  src={imagePaths[2]}
+                  alt={content.photoAltText[2]}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <p className="text-sm text-muted mt-4 font-light italic">
+                {content.photoCaptions[2]}
+              </p>
+            </Stagger>
+          </div>
+
+          {/* Large final image */}
+          <Stagger delay={1.3} className="group">
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] md:aspect-[16/10] bg-border/40">
+              <img
+                src={imagePaths[3]}
+                alt={content.photoAltText[3]}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <p className="text-sm text-muted mt-4 font-light italic">
+              {content.photoCaptions[3]}
+            </p>
+          </Stagger>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
-            One last thing →
-          </button>
-        </motion.div>
+        <Stagger delay={1.6}>
+          <Button variant="primary" arrow onClick={onContinue}>
+            One last thing
+          </Button>
+        </Stagger>
       </div>
-    </motion.div>
+    </PageTransition>
   );
 }

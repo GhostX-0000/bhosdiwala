@@ -1,105 +1,73 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 import content from '../data/content';
 
 interface PersonalSectionProps {
   onContinue: () => void;
 }
 
+const items = [
+  { label: 'I love', value: content.thingILove },
+  { label: 'I miss', value: content.thingIMiss },
+  { label: 'My favorite memory', value: content.favoriteMemory },
+  { label: 'I\'ll never forget', value: content.specialMemory },
+];
+
 export default function PersonalSection({ onContinue }: PersonalSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 20%, rgba(217, 184, 188, 0.14), transparent 55%), radial-gradient(ellipse at 80% 90%, rgba(139, 58, 69, 0.05), transparent 50%), #F5F2ED"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <p className="text-base md:text-lg text-primary leading-relaxed font-light mb-10">
-          There are things
-          <br />
-          I probably don't say enough.
-        </p>
-
-        <div className="space-y-8 mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-            className="text-base md:text-lg text-primary leading-relaxed font-light"
-          >
-            I love {content.thingILove}.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
-            className="text-base md:text-lg text-primary leading-relaxed font-light"
-          >
-            I miss when we {content.thingIMiss}.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
-            className="text-base md:text-lg text-primary leading-relaxed font-light"
-          >
-            My favorite memory of us
+      <div className="max-w-[640px] w-full text-center">
+        <Stagger delay={0.3} className="mb-14">
+          <p className="text-base md:text-lg text-muted leading-relaxed font-light">
+            There are things
             <br />
-            is {content.favoriteMemory}.
-          </motion.p>
+            I probably don't say enough.
+          </p>
+        </Stagger>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0, ease: 'easeOut' }}
-            className="text-base md:text-lg text-primary leading-relaxed font-light"
-          >
-            One thing about you
-            <br />
-            I'll never forget is {content.specialMemory}.
-          </motion.p>
+        {/* Timeline */}
+        <div className="relative space-y-10 mb-14 text-left max-w-[480px] mx-auto">
+          {/* Vertical line */}
+          <div
+            aria-hidden
+            className="absolute left-[18px] md:left-[22px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-border to-transparent"
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2, ease: 'easeOut' }}
-            className="pt-4"
-          >
-            <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-              And honestly...
-            </p>
-            <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-4">
-              life feels different
-            </p>
-            <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-              when we're not okay.
-            </p>
-          </motion.div>
+          {items.map((item, index) => (
+            <Stagger key={index} delay={0.5 + index * 0.2} className="relative pl-12 md:pl-14">
+              {/* Number marker */}
+              <div className="absolute left-0 top-0 flex items-center">
+                <span className="text-[11px] tracking-[0.2em] text-accent/70 font-medium tabular-nums">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              <p className="text-base md:text-lg text-primary leading-relaxed font-light">
+                <span className="text-muted/70">{item.label}</span>{' '}
+                <span className="text-primary">{item.value}.</span>
+              </p>
+            </Stagger>
+          ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.4, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
-            Continue →
-          </button>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        <Stagger delay={1.5}>
+          <p className="text-base md:text-lg text-primary leading-relaxed font-light mb-14">
+            And honestly...
+            <br />
+            <span className="text-muted">life feels different</span>
+            <br />
+            <span className="text-muted">when we're not okay.</span>
+          </p>
+        </Stagger>
+
+        <Stagger delay={1.7}>
+          <Button variant="primary" arrow onClick={onContinue}>
+            Continue
+          </Button>
+        </Stagger>
+      </div>
+    </PageTransition>
   );
 }

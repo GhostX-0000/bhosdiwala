@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import PageTransition, { Stagger } from './PageTransition';
+import Button from './Button';
 
 interface SecondChanceSectionProps {
   onContinue: () => void;
@@ -6,85 +7,89 @@ interface SecondChanceSectionProps {
 
 export default function SecondChanceSection({ onContinue }: SecondChanceSectionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="min-h-screen flex flex-col items-center justify-center px-6 py-16"
+    <PageTransition
+      background="radial-gradient(ellipse at 50% 30%, rgba(217, 184, 188, 0.20), transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(139, 58, 69, 0.06), transparent 50%), #F5F2ED"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        className="max-w-[600px] w-full text-center"
-      >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary mb-12 leading-tight">
-          Thank you.
-        </h1>
+      <div className="max-w-[640px] w-full text-center relative">
+        {/* Subtle warm glow */}
+        <div
+          aria-hidden
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(217, 184, 188, 0.15) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+          }}
+        />
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-          className="mb-12"
-        >
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            I really mean it.
-          </p>
+        <div className="relative z-10">
+          <Stagger delay={0.4}>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-primary mb-16 leading-[1.05] tracking-tight">
+              Thank <span className="italic font-serif text-accent">you.</span>
+            </h1>
+          </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I don't promise that we'll
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            never argue again.
-          </p>
+          <div className="space-y-5 mb-16">
+            <Stagger delay={0.7}>
+              <p className="text-base md:text-lg text-primary leading-relaxed font-light">
+                I really mean it.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-6">
-            I don't promise everything
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            will be perfect.
-          </p>
+            <Stagger delay={0.9}>
+              <p className="text-base md:text-lg text-muted leading-relaxed font-light pt-3">
+                I don't promise that we'll
+                <br />
+                never argue again.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            But I can promise
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            that I'll try harder.
-          </p>
+            <Stagger delay={1.1}>
+              <p className="text-base md:text-lg text-muted leading-relaxed font-light">
+                I don't promise everything
+                <br />
+                will be perfect.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            I'll listen better.
-          </p>
+            <Stagger delay={1.3}>
+              <p className="text-base md:text-lg text-primary leading-relaxed font-light pt-3">
+                But I can promise
+                <br />
+                that I'll try harder.
+              </p>
+            </Stagger>
+          </div>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-4">
-            I'll communicate better.
-          </p>
+          {/* Promises with emphasis */}
+          <div className="space-y-4 mb-16">
+            <Stagger delay={1.5}>
+              <p className="text-lg md:text-xl text-primary font-light leading-relaxed tracking-tight">
+                I'll listen better.
+              </p>
+            </Stagger>
 
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light mt-8">
-            And I'll never
-          </p>
-          <p className="text-base md:text-lg text-primary leading-relaxed font-light">
-            take you for granted.
-          </p>
-        </motion.div>
+            <Stagger delay={1.7}>
+              <p className="text-lg md:text-xl text-primary font-light leading-relaxed tracking-tight">
+                I'll communicate better.
+              </p>
+            </Stagger>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: 'easeOut' }}
-        >
-          <button
-            onClick={onContinue}
-            className="px-8 py-3.5 border border-border text-primary text-sm font-medium rounded-sm
-                       hover:border-primary transition-colors duration-300
-                       focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-background
-                       min-h-[48px]"
-          >
-            One more thing →
-          </button>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+            <Stagger delay={1.9}>
+              <p className="text-lg md:text-xl text-primary font-light leading-relaxed tracking-tight">
+                And I'll <span className="italic font-serif text-accent">never</span>
+                <br />
+                take you for granted.
+              </p>
+            </Stagger>
+          </div>
+
+          <Stagger delay={2.1}>
+            <Button variant="primary" arrow onClick={onContinue}>
+              One more thing
+            </Button>
+          </Stagger>
+        </div>
+      </div>
+    </PageTransition>
   );
 }
