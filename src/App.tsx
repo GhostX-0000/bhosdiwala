@@ -5,6 +5,7 @@ import SceneTwo from './components/SceneTwo';
 import SceneThree from './components/SceneThree';
 import SceneFour from './components/SceneFour';
 import Progress from './components/Progress';
+import BackgroundMusic from './components/BackgroundMusic';
 
 type Screen = 'scene1' | 'scene2' | 'scene3' | 'scene4';
 
@@ -67,6 +68,9 @@ export default function App() {
 
       {/* Progress indicator */}
       <Progress current={currentStep} total={TOTAL_SCENES} visible={showProgress} />
+
+      {/* Background music */}
+      <BackgroundMusic />
 
       {/* Main content */}
       <AnimatePresence mode="wait">
