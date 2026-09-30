@@ -34,30 +34,6 @@ export default function SceneThree({ onComplete }: SceneThreeProps) {
           </p>
         </motion.div>
 
-        {/* Thin divider */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-24 h-px bg-gradient-to-r from-transparent via-soft-accent/30 to-transparent mx-auto mb-16 md:mb-20 origin-left"
-        />
-
-        {/* Message 9 — FINAL MESSAGE */}
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{
-            duration: 0.9,
-            delay: 1.0,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="mb-16"
-        >
-          <p className="text-lg md:text-xl text-warm-white leading-[1.8] font-light">
-            Os na ps om drta wem che im choosing honesty <Highlight>i need you i fckn love you</Highlight> ds dmra time drta hrsa pata da khola hrsa strgy ma patawa os
-          </p>
-        </motion.div>
-
         {/* Continue to final */}
         <motion.div
           initial={{ opacity: 0 }}
