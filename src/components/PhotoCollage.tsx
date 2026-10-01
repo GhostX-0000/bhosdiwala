@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 
 export default function PhotoCollage() {
   const photos = [
-    'https://image.qwenlm.ai/generated-images/0377bb93-3a98-45fd-bb30-8c55d1a38507/_result.png',
-    'https://image.qwenlm.ai/generated-images/db54bfe8-e9c5-4a47-9d4b-a40bc4f30fe1/_result.png',
-    'https://image.qwenlm.ai/generated-images/b84a5373-363d-4e65-adce-6ebf22e20d48/_result.png',
-    'https://image.qwenlm.ai/generated-images/f7972cc9-e497-4b77-8dbd-0107ca5ae75a/_result.png',
-    'https://image.qwenlm.ai/generated-images/7e917d45-8ce1-4f5a-9db6-074bc90ae16a/_result.png',
-    'https://image.qwenlm.ai/generated-images/7f7025e0-70c3-4954-b1df-641692e150e3/_result.png',
-    'https://image.qwenlm.ai/generated-images/f5b877df-9163-4e45-882c-b122050d3f4d/_result.png',
+    '/photos/photo-1.jpg',
+    '/photos/photo-2.jpg',
+    '/photos/photo-3.jpg',
+    '/photos/photo-4.jpg',
+    '/photos/photo-5.jpg',
+    '/photos/photo-6.jpg',
+    '/photos/photo-7.jpg',
   ];
 
   // Scrapbook layout with varied sizes and subtle rotations
