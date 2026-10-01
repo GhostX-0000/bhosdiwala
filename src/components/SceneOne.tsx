@@ -106,7 +106,7 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
 
                   <Stagger delay={0.5} className="flex flex-col items-center gap-3 w-full max-w-[260px]">
                     <YesButton onClick={handleYesClick} />
-                    <NoButton playful onClick={handleNoClick} />
+                    <NoButton onClick={handleNoClick} />
                   </Stagger>
                 </>
               )}
@@ -126,7 +126,7 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
 
                   <Stagger delay={0.6} className="flex flex-col items-center gap-3 w-full max-w-[260px]">
                     <YesButton onClick={handleYesClick} />
-                    <NoButton playful onClick={handleNoClick} />
+                    <NoButton onClick={handleNoClick} />
                   </Stagger>
                 </>
               )}
@@ -146,7 +146,7 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
 
                   <Stagger delay={0.6} className="flex flex-col items-center gap-3 w-full max-w-[260px]">
                     <YesButton onClick={handleYesClick} />
-                    <NoButton playful onClick={handleNoClick} />
+                    <NoButton onClick={handleNoClick} />
                   </Stagger>
                 </>
               )}
