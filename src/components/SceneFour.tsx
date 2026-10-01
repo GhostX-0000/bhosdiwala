@@ -47,7 +47,7 @@ export default function SceneFour() {
             className="mb-20"
           >
             <p className="text-lg md:text-xl text-warm-white leading-[1.8] font-light">
-              Os na ps om drta wem che im choosing honesty <Highlight>i need you i fckn love you</Highlight> ds dmra time drta hrsa pata da khola hrsa strgy ma patawa os
+              i'm still choosing honesty, <Highlight>i need us, i fckn love uh</Highlight>, yk everything, chi risha sa di, harsa na pas we've been together and i still want us together, i am still in pain but i want chi tam sama shi and za om, lets start over again.
             </p>
           </motion.div>
 
