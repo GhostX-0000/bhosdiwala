@@ -5,6 +5,7 @@ import content from '../data/content';
 
 interface SceneTwoProps {
   onComplete: () => void;
+  onBack: () => void;
 }
 
 function MessageSection({
@@ -35,7 +36,7 @@ function Highlight({ children }: { children: React.ReactNode }) {
   return <span className="text-soft-accent font-medium">{children}</span>;
 }
 
-export default function SceneTwo({ onComplete }: SceneTwoProps) {
+export default function SceneTwo({ onComplete, onBack }: SceneTwoProps) {
   return (
     <PageTransition
       background="radial-gradient(ellipse at 50% 20%, rgba(168, 50, 74, 0.18), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(168, 50, 74, 0.08), transparent 50%), #000000"
@@ -105,21 +106,28 @@ export default function SceneTwo({ onComplete }: SceneTwoProps) {
           </p>
         </MessageSection>
 
-        {/* Continue button */}
+        {/* Navigation buttons */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-16 mb-12 text-center"
+          className="mt-16 mb-12 flex justify-center gap-4"
         >
+          <Button
+            variant="secondary"
+            onClick={onBack}
+            className="!border-border-dark/60 !text-warm-white/90 hover:!border-warm-white/50 hover:!text-warm-white"
+          >
+            back page
+          </Button>
           <Button
             variant="secondary"
             arrow
             onClick={onComplete}
             className="!border-border-dark/60 !text-warm-white/90 hover:!border-warm-white/50 hover:!text-warm-white"
           >
-            Continue
+            next page
           </Button>
         </motion.div>
 
