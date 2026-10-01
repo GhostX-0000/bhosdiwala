@@ -87,6 +87,7 @@ export default function NoButton({ playful = false, onClick }: NoButtonProps) {
     (e: React.PointerEvent) => {
       if (playful && (e.pointerType === 'touch' || e.pointerType === 'pen')) {
         e.preventDefault();
+        e.stopPropagation();
         moveButton();
         
         // Debounce: only trigger if enough time has passed since last trigger
@@ -101,16 +102,20 @@ export default function NoButton({ playful = false, onClick }: NoButtonProps) {
   );
 
   // Desktop: advance on click (after hover-move)
-  const handleClick = useCallback(() => {
-    if (playful) {
-      // Debounce: only trigger if enough time has passed since last trigger
-      const now = Date.now();
-      if (now - lastTriggerRef.current > 300) {
-        lastTriggerRef.current = now;
-        onClick?.();
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (playful) {
+        e.stopPropagation();
+        // Debounce: only trigger if enough time has passed since last trigger
+        const now = Date.now();
+        if (now - lastTriggerRef.current > 300) {
+          lastTriggerRef.current = now;
+          onClick?.();
+        }
       }
-    }
-  }, [playful, onClick]);
+    },
+    [playful, onClick]
+  );
 
   return (
     <motion.button
