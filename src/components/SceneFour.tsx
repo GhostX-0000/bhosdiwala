@@ -75,14 +75,19 @@ export default function SceneFour() {
           />
 
           {/* Signature */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 2.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-soft-accent/70 tracking-wide leading-relaxed text-center"
+            className="text-center"
           >
-            — your husband, {content.senderName}
-          </motion.p>
+            <p className="text-sm md:text-base lg:text-lg text-warm-white/50 font-light italic tracking-wide leading-relaxed mb-6">
+              with all the love i never knew how to explain…
+            </p>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-soft-accent/70 tracking-wide leading-relaxed">
+              — your awaited one, {content.senderName}
+            </p>
+          </motion.div>
 
           {/* Spacer */}
           <div className="h-20" />
