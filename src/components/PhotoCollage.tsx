@@ -22,16 +22,16 @@ export default function PhotoCollage() {
     { size: 'medium', rotation: -2, delay: 1.4 },
   ];
 
-  const getSizeClasses = (size: string) => {
+  const getWidthClass = (size: string) => {
     switch (size) {
       case 'large':
-        return 'col-span-2 row-span-2 aspect-square';
+        return 'w-full md:w-[calc(50%-8px)]';
       case 'medium':
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'w-full md:w-[calc(33.333%-10px)]';
       case 'small':
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'w-full md:w-[calc(33.333%-10px)]';
       default:
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'w-full md:w-[calc(33.333%-10px)]';
     }
   };
 
@@ -42,7 +42,7 @@ export default function PhotoCollage() {
       transition={{ duration: 1.2, delay: 0.5 }}
       className="w-full max-w-[600px] mx-auto mb-16 md:mb-20 px-4"
     >
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-auto">
+      <div className="flex flex-wrap gap-3 md:gap-4 justify-center">
         {photos.map((photo, index) => {
           const { size, rotation, delay } = layout[index];
           return (
@@ -55,7 +55,7 @@ export default function PhotoCollage() {
                 delay,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className={`${getSizeClasses(size)} relative overflow-hidden rounded-lg shadow-2xl`}
+              className={`${getWidthClass(size)} relative rounded-lg shadow-2xl bg-black`}
               style={{
                 border: '2px solid rgba(232, 180, 188, 0.2)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.6)',
@@ -64,11 +64,11 @@ export default function PhotoCollage() {
               <img
                 src={photo}
                 alt={`Memory ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-auto block rounded-lg"
                 loading="lazy"
               />
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none rounded-lg"
                 style={{
                   background: 'linear-gradient(135deg, rgba(168, 50, 74, 0.1) 0%, transparent 50%)',
                 }}
