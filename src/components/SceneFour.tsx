@@ -17,7 +17,7 @@ export default function SceneFour() {
 
   return (
     <PageTransition
-      background="radial-gradient(ellipse at 50% 40%, rgba(139, 58, 69, 0.10), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(217, 184, 188, 0.06), transparent 50%), #171717"
+      background="radial-gradient(ellipse at 50% 40%, rgba(168, 50, 74, 0.14), transparent 55%), radial-gradient(ellipse at 30% 80%, rgba(232, 180, 188, 0.08), transparent 50%), #000000"
       align="start"
     >
       <div className="max-w-[600px] w-full mx-auto">
@@ -29,7 +29,7 @@ export default function SceneFour() {
           transition={{ duration: 2.0, ease: [0.22, 1, 0.36, 1] }}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(139, 58, 69, 0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(168, 50, 74, 0.18) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
         />
@@ -58,10 +58,10 @@ export default function SceneFour() {
             transition={{ duration: 1.2, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
             className="mb-20 text-center"
           >
-            <p className="text-base md:text-lg text-warm-white/60 leading-[1.8] font-light italic font-serif">
+            <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light italic font-serif">
               i lost myself everytime just to feel the warmth of your love,
             </p>
-            <p className="text-base md:text-lg text-warm-white/60 leading-[1.8] font-light italic font-serif mt-2">
+            <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light italic font-serif mt-2">
               i yearn for the love i gave, i still yearn for those eyes
             </p>
           </motion.div>
@@ -71,7 +71,7 @@ export default function SceneFour() {
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 1.0, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
-            className="w-20 h-px bg-gradient-to-r from-transparent via-soft-accent/30 to-transparent mx-auto mb-16 origin-center"
+            className="w-20 h-px bg-gradient-to-r from-transparent via-soft-accent/50 to-transparent mx-auto mb-16 origin-center"
           />
 
           {/* Signature */}
@@ -81,10 +81,10 @@ export default function SceneFour() {
             transition={{ duration: 1.2, delay: 2.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-center"
           >
-            <p className="text-sm md:text-base lg:text-lg text-warm-white/50 font-light italic tracking-wide leading-relaxed mb-6">
+            <p className="text-sm md:text-base lg:text-lg text-warm-white/70 font-light italic tracking-wide leading-relaxed mb-6">
               with all the love i never knew how to explain…
             </p>
-            <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-soft-accent/70 tracking-wide leading-relaxed">
+            <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-soft-accent tracking-wide leading-relaxed">
               — your awaited one, {content.senderName}
             </p>
           </motion.div>

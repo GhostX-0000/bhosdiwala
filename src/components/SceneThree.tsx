@@ -14,7 +14,7 @@ function Highlight({ children }: { children: React.ReactNode }) {
 export default function SceneThree({ onComplete }: SceneThreeProps) {
   return (
     <PageTransition
-      background="radial-gradient(ellipse at 50% 30%, rgba(139, 58, 69, 0.18), transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(217, 184, 188, 0.08), transparent 50%), #171717"
+      background="radial-gradient(ellipse at 50% 30%, rgba(168, 50, 74, 0.22), transparent 55%), radial-gradient(ellipse at 70% 80%, rgba(232, 180, 188, 0.10), transparent 50%), #000000"
       align="start"
     >
       <div className="max-w-[600px] w-full mx-auto">
@@ -29,7 +29,7 @@ export default function SceneThree({ onComplete }: SceneThreeProps) {
           }}
           className="mb-16 md:mb-20"
         >
-          <p className="text-2xl md:text-3xl lg:text-4xl text-warm-white/90 leading-[1.5] font-light tracking-tight">
+          <p className="text-2xl md:text-3xl lg:text-4xl text-warm-white leading-[1.5] font-light tracking-tight">
             <Highlight>I want you back</Highlight> da cycle odrawa bska os
           </p>
         </motion.div>
@@ -45,7 +45,7 @@ export default function SceneThree({ onComplete }: SceneThreeProps) {
             variant="secondary"
             arrow
             onClick={onComplete}
-            className="!border-border-dark/40 !text-warm-white/70 hover:!border-warm-white/30 hover:!text-warm-white"
+            className="!border-border-dark/60 !text-warm-white/90 hover:!border-warm-white/50 hover:!text-warm-white"
           >
             Continue
           </Button>
