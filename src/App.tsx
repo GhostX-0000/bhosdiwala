@@ -38,11 +38,11 @@ export default function App() {
       case 'scene1':
         return <SceneOne onComplete={() => navigate('scene2')} />;
       case 'scene2':
-        return <SceneTwo onComplete={() => navigate('scene3')} />;
+        return <SceneTwo onComplete={() => navigate('scene3')} onBack={() => navigate('scene1')} />;
       case 'scene3':
-        return <SceneThree onComplete={() => navigate('scene4')} />;
+        return <SceneThree onComplete={() => navigate('scene4')} onBack={() => navigate('scene2')} />;
       case 'scene4':
-        return <SceneFour />;
+        return <SceneFour onBack={() => navigate('scene3')} />;
       default:
         return <SceneOne onComplete={() => navigate('scene2')} />;
     }

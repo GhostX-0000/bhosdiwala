@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from './PageTransition';
+import Button from './Button';
+import PhotoCollage from './PhotoCollage';
 import content from '../data/content';
+
+interface SceneFourProps {
+  onBack: () => void;
+}
 
 function Highlight({ children }: { children: React.ReactNode }) {
   return <span className="text-soft-accent font-medium">{children}</span>;
 }
 
-export default function SceneFour() {
+export default function SceneFour({ onBack }: SceneFourProps) {
   const [showGlow, setShowGlow] = useState(false);
 
   useEffect(() => {
@@ -51,6 +57,9 @@ export default function SceneFour() {
             </p>
           </motion.div>
 
+          {/* Photo collage */}
+          <PhotoCollage />
+
           {/* Poetic lines */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -87,6 +96,22 @@ export default function SceneFour() {
             <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-soft-accent tracking-wide leading-relaxed">
               — your awaited one, {content.senderName}
             </p>
+          </motion.div>
+
+          {/* Navigation buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 2.5 }}
+            className="mt-16 mb-12 flex justify-center gap-4"
+          >
+            <Button
+              variant="secondary"
+              onClick={onBack}
+              className="!border-border-dark/60 !text-warm-white/90 hover:!border-warm-white/50 hover:!text-warm-white"
+            >
+              back page
+            </Button>
           </motion.div>
 
           {/* Spacer */}
