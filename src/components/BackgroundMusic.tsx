@@ -11,6 +11,14 @@ export default function BackgroundMusic() {
     // Set volume immediately
     audio.volume = 0.5;
 
+    // Cleanup function for gesture listeners (defined first so it can be referenced)
+    const cleanupGestureListeners = () => {
+      document.removeEventListener('pointerdown', handleFirstInteraction, true);
+      document.removeEventListener('touchstart', handleFirstInteraction, true);
+      document.removeEventListener('click', handleFirstInteraction, true);
+      document.removeEventListener('keydown', handleFirstInteraction, true);
+    };
+
     // Function to attempt playback
     const tryPlay = async () => {
       if (!audio || hasStartedRef.current) return;
@@ -37,14 +45,6 @@ export default function BackgroundMusic() {
     audio.addEventListener('canplay', handleCanPlay);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
 
-    // Cleanup function for gesture listeners
-    const cleanupGestureListeners = () => {
-      document.removeEventListener('pointerdown', handleFirstInteraction, true);
-      document.removeEventListener('touchstart', handleFirstInteraction, true);
-      document.removeEventListener('click', handleFirstInteraction, true);
-      document.removeEventListener('keydown', handleFirstInteraction, true);
-    };
-
     // First-interaction fallback with capture phase
     const handleFirstInteraction = async () => {
       if (!hasStartedRef.current && audio) {
@@ -59,11 +59,11 @@ export default function BackgroundMusic() {
       }
     };
 
-    // Add capture-phase listeners for immediate response
-    document.addEventListener('pointerdown', handleFirstInteraction, { once: true, capture: true });
-    document.addEventListener('touchstart', handleFirstInteraction, { once: true, capture: true });
-    document.addEventListener('click', handleFirstInteraction, { once: true, capture: true });
-    document.addEventListener('keydown', handleFirstInteraction, { once: true, capture: true });
+    // Add capture-phase listeners WITHOUT { once: true } - keep listening until it works
+    document.addEventListener('pointerdown', handleFirstInteraction, { capture: true });
+    document.addEventListener('touchstart', handleFirstInteraction, { capture: true });
+    document.addEventListener('click', handleFirstInteraction, { capture: true });
+    document.addEventListener('keydown', handleFirstInteraction, { capture: true });
 
     // Error handling
     const handleError = () => {
