@@ -62,7 +62,7 @@ export default function App() {
           left: '60%',
           width: '400px',
           height: '400px',
-          background: 'radial-gradient(circle, rgba(139, 58, 69, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(168, 50, 74, 0.12) 0%, transparent 70%)',
         }}
       />
 

@@ -41,7 +41,7 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
 
   return (
     <PageTransition
-      background="radial-gradient(ellipse at 50% 20%, rgba(217, 184, 188, 0.18), transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(139, 58, 69, 0.06), transparent 50%), #F5F2ED"
+      background="radial-gradient(ellipse at 50% 20%, rgba(168, 50, 74, 0.15), transparent 55%), radial-gradient(ellipse at 80% 80%, rgba(232, 180, 188, 0.08), transparent 50%), #000000"
     >
       <div className="max-w-[640px] w-full text-center flex flex-col items-center">
         <AnimatePresence mode="wait">
@@ -59,14 +59,14 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
                 aria-hidden
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle, rgba(217, 184, 188, 0.15) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(168, 50, 74, 0.25) 0%, transparent 70%)',
                   filter: 'blur(40px)',
                 }}
               />
 
               {/* "for" — small, elegant */}
               <Stagger delay={0.3}>
-                <p className="text-sm md:text-base text-muted/70 font-light tracking-wide mb-2 relative z-10">
+                <p className="text-sm md:text-base text-muted font-light tracking-wide mb-2 relative z-10">
                   for
                 </p>
               </Stagger>
@@ -76,7 +76,7 @@ export default function SceneOne({ onComplete }: SceneOneProps) {
                 <h1
                   className="text-6xl md:text-7xl lg:text-8xl font-light tracking-tight leading-none mb-8 relative z-10"
                   style={{
-                    backgroundImage: 'linear-gradient(135deg, #8B3A45 0%, #D9B8BC 40%, #B8860B 70%, #8B3A45 100%)',
+                    backgroundImage: 'linear-gradient(135deg, #C41E3A 0%, #E8B4BC 40%, #DAA520 70%, #A8324A 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
