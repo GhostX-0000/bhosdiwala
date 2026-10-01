@@ -92,7 +92,9 @@ export default function SceneTwo({ onComplete }: SceneTwoProps) {
         {/* Message 6 */}
         <MessageSection>
           <p className="text-base md:text-lg text-warm-white/80 leading-[1.8] font-light">
-            kho ta zmng ds dre salor kala yad ka hrsa yad ka da snga wu za snga wm <Highlight>i still love you</Highlight> hra pera ma chance wrkre mene la depere tana ghwarm
+            zamong da domra time yad ka sanga wo aw za sanga wom, <Highlight>i still love uh</Highlight>, and i will love uh.
+            <br />
+            hara pera ma chance warkari khpali meena la, os di tata realize shi
           </p>
         </MessageSection>
 

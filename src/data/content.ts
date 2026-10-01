@@ -30,7 +30,8 @@ I thought somehow it would make you understand che smra pain k wam but i realise
     `hrsa na ps hm i love you i forgave things that broke me bcs I couldn't imagine loosing you pain k wm dena baghair me nashu deal kole khpl pain sr
 name ghohtal che ta hurt km nme dena mahke dse sa kare tta kha pata da`,
 
-    `kho ta zmng ds dre salor kala yad ka hrsa yad ka da snga wu za snga wm i still love you hra pera ma chance wrkre mene la depere tana ghwarm`,
+    `zamong da domra time yad ka sanga wo aw za sanga wom, i still love uh, and i will love uh.
+hara pera ma chance warkari khpali meena la, os di tata realize shi`,
 
     `mata pata da you've seen things nd ik hurt kai bde za e deny kom na kho da hrsa i lied hrsa was on purpose
 I ws carrying so much pain che ma pasa khpl pain control ko aghy da pasa ta kawal`,
